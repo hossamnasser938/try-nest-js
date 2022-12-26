@@ -11,7 +11,7 @@ export class AppController {
   }
 
   @Get(':person')
-  postHello(@Param() params: {person: string}): string {
+  getHelloPerson(@Param() params: {person: string}): string {
     return this.appService.getHelloPerson(params.person)
   }
 }

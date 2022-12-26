@@ -18,5 +18,9 @@ describe('AppController', () => {
     it('should return "Hello World!"', () => {
       expect(appController.getHello()).toBe('Hello World!')
     })
+
+    it ('should return "Hello [person]!"', () => {
+      expect(appController.getHelloPerson({person: "Hossam"})).toMatch(/Hello Hossam/)
+    })
   })
 })
