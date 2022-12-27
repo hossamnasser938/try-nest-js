@@ -1,4 +1,5 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { CreateCatDTO } from './cats.dto';
 import { CatsService } from './cats.service';
 
 @Controller('cats')
@@ -14,4 +15,9 @@ export class CatsController {
     findOne(@Param('id') id: string) {
         return this.catsService.findOne(id)
     }
+
+    @Post()
+    createOne(@Body() body: CreateCatDTO): string {
+        return this.catsService.createOne(body)
+    } 
 }
