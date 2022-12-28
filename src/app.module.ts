@@ -2,6 +2,7 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { CatsModule } from './resources/cats/cats.module';
 import { DogsModule } from './resources/dogs/dogs.module';
 import { LoggerMiddleware } from './middlewares/Logger.middleware';
+import { authMiddleware } from './middlewares/auth.middleware';
 
 @Module({
   imports: [CatsModule, DogsModule],
@@ -9,7 +10,7 @@ import { LoggerMiddleware } from './middlewares/Logger.middleware';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(LoggerMiddleware)
+      .apply(LoggerMiddleware, authMiddleware)
       .exclude({path: 'cats/:id', method: RequestMethod.GET})
       .forRoutes('cats', 'dogs')
   }
