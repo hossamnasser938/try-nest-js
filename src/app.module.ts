@@ -10,7 +10,11 @@ import { authMiddleware } from './middlewares/auth.middleware';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(LoggerMiddleware, authMiddleware)
+      .apply(LoggerMiddleware)
+      .forRoutes('*')
+
+    consumer
+      .apply(authMiddleware)
       .exclude({path: 'cats/:id', method: RequestMethod.GET})
       .forRoutes('cats', 'dogs')
   }
