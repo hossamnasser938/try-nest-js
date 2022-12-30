@@ -1,3 +1,4 @@
+import { HttpStatus } from "@nestjs/common";
 import { NextFunction, Request, Response } from "express";
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
@@ -5,6 +6,6 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
         next()
     }
     else {
-        res.status(401).send("Unauthorized")
+        res.status(HttpStatus.UNAUTHORIZED).send("Unauthorized")
     }
 }
