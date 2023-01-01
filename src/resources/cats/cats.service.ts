@@ -7,7 +7,7 @@ export class CatsService {
         return 'This is intended to return all cats'
     }
 
-    findOne(id: string): string {
+    findOne(id: number): string {
         return `This is intended to return cat #${id}`
     }
 
