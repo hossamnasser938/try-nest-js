@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { CreateDogDTO } from './dto/create-dog.dto';
+import { Injectable } from "@nestjs/common"
+import { CreateDogDTO } from "./dto/create-dog.dto"
 
 @Injectable()
 export class DogsService {
     findAll(): string {
-        return 'This is intended to return all dogs'
+        return "This is intended to return all dogs"
     }
 
     createOne(createDogDTO: CreateDogDTO): string {

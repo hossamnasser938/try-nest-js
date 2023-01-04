@@ -1,10 +1,18 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, UsePipes } from '@nestjs/common';
-import { CreateCatDTO } from './dto/create-cat.dto';
-import { CatsService } from './cats.service';
-import { JoiValidationPipe } from 'src/pipes/joi-validation.pipe';
-import { createCatSchema } from './schema/create-cat.schema';
+import {
+    Body,
+    Controller,
+    Get,
+    Param,
+    ParseIntPipe,
+    Post,
+    UsePipes,
+} from "@nestjs/common"
+import { CreateCatDTO } from "./dto/create-cat.dto"
+import { CatsService } from "./cats.service"
+import { JoiValidationPipe } from "src/pipes/joi-validation.pipe"
+import { createCatSchema } from "./schema/create-cat.schema"
 
-@Controller('cats')
+@Controller("cats")
 export class CatsController {
     constructor(private readonly catsService: CatsService) {}
 
@@ -13,8 +21,8 @@ export class CatsController {
         return this.catsService.findAll()
     }
 
-    @Get('/:id')
-    findOne(@Param('id', ParseIntPipe) id: number) {
+    @Get("/:id")
+    findOne(@Param("id", ParseIntPipe) id: number) {
         return this.catsService.findOne(id)
     }
 
@@ -22,5 +30,5 @@ export class CatsController {
     @UsePipes(new JoiValidationPipe(createCatSchema))
     createOne(@Body() body: CreateCatDTO): string {
         return this.catsService.createOne(body)
-    } 
+    }
 }
