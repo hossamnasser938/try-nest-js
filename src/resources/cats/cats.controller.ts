@@ -11,11 +11,13 @@ import { CreateCatDTO } from "./dto/create-cat.dto"
 import { CatsService } from "./cats.service"
 import { JoiValidationPipe } from "src/pipes/joi-validation.pipe"
 import { createCatSchema } from "./schema/create-cat.schema"
+import { SetRolesMetadata } from "src/decorators/roles.decorator"
 
 @Controller("cats")
 export class CatsController {
     constructor(private readonly catsService: CatsService) {}
 
+    @SetRolesMetadata("admin")
     @Get()
     findAll(): string {
         return this.catsService.findAll()
