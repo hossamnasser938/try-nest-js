@@ -9,7 +9,7 @@ import { DogsModule } from "./resources/dogs/dogs.module"
 import { LoggerMiddleware } from "./middlewares/Logger.middleware"
 import { authMiddleware } from "./middlewares/auth.middleware"
 import { APP_FILTER, APP_GUARD, APP_PIPE } from "@nestjs/core"
-import { HttpExceptionLoggerFilter } from "./exception-filters/HttpExceptionLogger"
+import { HttpExceptionLoggerFilter } from "./exception-filters/http-exception-logger"
 import { ClassValidationPipe } from "./pipes/class-validation.pipe"
 import { RolesGuard } from "./guards/roles.guard"
 
