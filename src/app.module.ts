@@ -13,6 +13,7 @@ import { HttpExceptionLoggerFilter } from "./exception-filters/http-exception-lo
 import { ClassValidationPipe } from "./pipes/class-validation.pipe"
 import { RolesGuard } from "./guards/roles.guard"
 import { ReqTimeLoggerInterceptor } from "./interceptors/req-time-logger.interceptor"
+import { CapitalizeInterceptor } from "./interceptors/capitalize.interceptor"
 
 @Module({
     imports: [CatsModule, DogsModule],
@@ -32,6 +33,10 @@ import { ReqTimeLoggerInterceptor } from "./interceptors/req-time-logger.interce
         {
             provide: APP_INTERCEPTOR,
             useClass: ReqTimeLoggerInterceptor,
+        },
+        {
+            provide: APP_INTERCEPTOR,
+            useClass: CapitalizeInterceptor,
         },
     ],
 })
