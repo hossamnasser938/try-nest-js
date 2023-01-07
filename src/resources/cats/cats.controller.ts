@@ -12,6 +12,7 @@ import { CatsService } from "./cats.service"
 import { JoiValidationPipe } from "src/pipes/joi-validation.pipe"
 import { createCatSchema } from "./schema/create-cat.schema"
 import { SetRolesMetadata } from "src/decorators/roles.decorator"
+import { User } from "src/decorators/user.decorator"
 
 @Controller("cats")
 export class CatsController {
@@ -19,8 +20,8 @@ export class CatsController {
 
     @SetRolesMetadata("admin")
     @Get()
-    findAll(): string {
-        return this.catsService.findAll()
+    findAll(@User() user): string {
+        return this.catsService.findAll(user)
     }
 
     @Get("/:id")
