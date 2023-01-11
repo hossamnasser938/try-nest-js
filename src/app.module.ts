@@ -12,9 +12,23 @@ import { APP_FILTER, APP_GUARD, APP_PIPE } from "@nestjs/core"
 import { HttpExceptionLoggerFilter } from "./exception-filters/http-exception-logger"
 import { ClassValidationPipe } from "./pipes/class-validation.pipe"
 import { RolesGuard } from "./guards/roles.guard"
+import { TypeOrmModule } from "@nestjs/typeorm"
 
 @Module({
-    imports: [CatsModule, DogsModule],
+    imports: [
+        TypeOrmModule.forRoot({
+            type: "mysql",
+            host: "localhost",
+            port: 3306,
+            username: "root",
+            password: "Cc01102022$",
+            database: "test",
+            autoLoadEntities: true,
+            synchronize: true,
+        }),
+        CatsModule,
+        DogsModule,
+    ],
     providers: [
         {
             provide: APP_FILTER,
