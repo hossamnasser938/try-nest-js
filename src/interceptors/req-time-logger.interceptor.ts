@@ -5,7 +5,7 @@ import {
     NestInterceptor,
 } from "@nestjs/common"
 import { Request } from "express"
-import { Observable } from "rxjs"
+import { Observable, tap } from "rxjs"
 
 @Injectable()
 export class ReqTimeLoggerInterceptor implements NestInterceptor {
@@ -16,10 +16,14 @@ export class ReqTimeLoggerInterceptor implements NestInterceptor {
         const req = context.switchToHttp().getRequest<Request>()
         const reqUrl = req.baseUrl + req.url
         const now = Date.now()
-        const resObservable = next.handle()
-        resObservable.subscribe(() =>
-            console.log(`request ${reqUrl} = ${Date.now() - now} ms elapsed`),
-        )
-        return resObservable
+        return next
+            .handle()
+            .pipe(
+                tap(() =>
+                    console.log(
+                        `request ${reqUrl} = ${Date.now() - now} ms elapsed`,
+                    ),
+                ),
+            )
     }
 }
