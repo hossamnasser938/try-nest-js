@@ -15,6 +15,7 @@ import { RolesGuard } from "./guards/roles.guard"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { ReqTimeLoggerInterceptor } from "./interceptors/req-time-logger.interceptor"
 import { CapitalizeInterceptor } from "./interceptors/capitalize.interceptor"
+import { ConfigModule } from "./modules/config-module/config.module"
 
 @Module({
     imports: [
@@ -28,6 +29,7 @@ import { CapitalizeInterceptor } from "./interceptors/capitalize.interceptor"
             autoLoadEntities: true,
             synchronize: true,
         }),
+        ConfigModule.register({ folder: "config" }),
         CatsModule,
         DogsModule,
     ],

@@ -6,6 +6,7 @@ import { ConfigService } from "./config.service"
 export class ConfigModule {
     public static register(configOptions: IConfigModuleOptions): DynamicModule {
         return {
+            global: true,
             module: ConfigModule,
             providers: [
                 {
