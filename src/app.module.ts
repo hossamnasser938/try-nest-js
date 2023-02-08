@@ -16,9 +16,12 @@ import { TypeOrmModule } from "@nestjs/typeorm"
 import { ReqTimeLoggerInterceptor } from "./interceptors/req-time-logger.interceptor"
 import { CapitalizeInterceptor } from "./interceptors/capitalize.interceptor"
 import { ConfigModule } from "./modules/config-module/config.module"
+import { ScheduleModule } from "@nestjs/schedule"
+import { TasksService } from "./services/tasks.service"
 
 @Module({
     imports: [
+        ScheduleModule.forRoot(),
         TypeOrmModule.forRoot({
             type: "mysql",
             host: "localhost",
@@ -34,6 +37,7 @@ import { ConfigModule } from "./modules/config-module/config.module"
         DogsModule,
     ],
     providers: [
+        TasksService,
         {
             provide: APP_FILTER,
             useClass: HttpExceptionLoggerFilter,
